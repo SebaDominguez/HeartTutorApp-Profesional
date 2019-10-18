@@ -1,9 +1,43 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-title>
-      Tab Two
+      Nueva Prescripción
     </ion-title>
   </ion-toolbar>
+  
 </ion-header>
+<ion-content class="form-content">
 
-<ion-content></ion-content>
+   <form [formGroup]="formulario"  (ngSubmit)="onSubmit(formulario.value)">
+  
+    <ion-item>
+      <ion-label position="floating" color="primary">Profesional a cargo</ion-label>
+      <ion-select formControlName="profesional" cancelText="Cancel" okText="Ok">
+        <ion-select-option *ngFor="let profesionales of profesional" [value]="profesionales">{{profesionales}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Nombre</ion-label>
+      <ion-input type="text" autocapitalize="on" required="true" placeholder="Ingrese el nombre del paciente"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating" color="primary">Apellido</ion-label>
+        <ion-input type="text" autocapitalize="on" required="true" placeholder="Ingrese el apellido del paciente"></ion-input>
+      </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Rut</ion-label>
+      <ion-input type="number" required="true" placeholder="Ingrese el rut del paciente, sin puntos ni guion"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating" color="primary">Observaciones</ion-label>
+        <ion-textarea rows="10" ></ion-textarea>
+      </ion-item>
+      <div class="ion-padding">
+          
+          <ion-button (click)="postData()"expand="block" class="ion-no-margin">Enviar Prescripción</ion-button>
+        </div>
+</form> 
+
+  
+</ion-content>
