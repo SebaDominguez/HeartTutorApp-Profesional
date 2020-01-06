@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,18 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private localNotifications: LocalNotifications) {
+    
+  }
 
+  registerNotification(seconds: number) {
+    this.localNotifications.schedule({
+      title: `my ${seconds} notification`,
+      text: `my detailed description`,
+      trigger: {
+        in: seconds,
+        unit: ELocalNotificationTriggerUnit.SECOND,
+      },
+    });
+  }
 }
